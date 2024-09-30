@@ -8,6 +8,7 @@ public class KinoXpBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(KinoXpBackendApplication.class, args);
+        System.out.println("h");
     }
 
 }
