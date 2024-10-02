@@ -1,5 +1,5 @@
 package model;
 
-public class movie {
+public class Movie {
     private String name;
 }
