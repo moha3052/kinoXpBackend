@@ -34,8 +34,4 @@ public class Movie {
         this.duration = duration;
         this.ageLimit = ageLimit;
     }
-
-
-
 }
-

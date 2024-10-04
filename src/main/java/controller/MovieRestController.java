@@ -19,9 +19,9 @@ public class MovieRestController {
     }
 
     // Hent en film baseret på ID
-     @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public List<Movie> getMovieById(@PathVariable int id) {
-         List <Movie>movieById = movieService.getMovieById(id);
+        List <Movie>movieById = movieService.getMovieById(id);
         if (movieById == null) {
             throw new RuntimeException("Film not found with ID: " + id);  // Kaste en exception, hvis filmen ikke findes
         }
