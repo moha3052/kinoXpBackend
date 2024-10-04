@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.kinoxpbackend.service.MovieService;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/movies")
 public class MovieRestController {
