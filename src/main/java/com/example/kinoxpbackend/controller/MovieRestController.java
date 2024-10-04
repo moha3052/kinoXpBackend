@@ -1,9 +1,9 @@
-package controller;
+package com.example.kinoxpbackend.controller;
 
-import model.Movie;
+import com.example.kinoxpbackend.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import service.MovieService;
+import com.example.kinoxpbackend.service.MovieService;
 
 import java.util.List;
 @RestController

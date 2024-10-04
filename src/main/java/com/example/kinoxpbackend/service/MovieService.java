@@ -1,9 +1,9 @@
-package service;
+package com.example.kinoxpbackend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import model.Movie;
-import repository.MovieRepository;
+import com.example.kinoxpbackend.model.Movie;
+import com.example.kinoxpbackend.repository.MovieRepository;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class MovieService {
 
     // Hent en film baseret på ID
     public List<Movie> getMovieById(int id) {
-        return movieRepository.findByid(id);
+        return movieRepository.findByMovieID(id);
     }
 
     // Opdater en film
