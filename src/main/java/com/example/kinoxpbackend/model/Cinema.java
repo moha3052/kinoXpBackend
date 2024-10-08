@@ -1,4 +1,4 @@
-package com.example.kinoxpbackend.cinema;
+package com.example.kinoxpbackend.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ShowRepository extends JpaRepository<Show, Integer> {
-    // Du kan tilføje tilpassede metoder her, hvis nødvendigt
+
 }

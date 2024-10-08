@@ -1,5 +1,7 @@
-package com.example.kinoxpbackend.cinema;
+package com.example.kinoxpbackend.controller;
 
+import com.example.kinoxpbackend.model.Cinema;
+import com.example.kinoxpbackend.service.CinemaService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
