@@ -1,39 +1,50 @@
 package com.example.kinoxpbackend.controller;
 
 import com.example.kinoxpbackend.model.Movie;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.kinoxpbackend.service.MovieService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/movies")
+@RequestMapping("/api")
 public class MovieRestController {
-    @Autowired
-    private MovieService movieService;
+
+    final MovieService movieService;
+
+    public MovieRestController(MovieService movieService){
+        this.movieService = movieService;
+    }
 
     // Hent alle film
-    @GetMapping
+    @GetMapping("/movies")
     public List<Movie> getAllMovies() {
-        return movieService.getAllMovies();
+        return movieService.getMovies();
     }
+
+
+
 
     // Hent en film baseret på ID
     @GetMapping("/{id}")
-    public List<Movie> getMovieById(@PathVariable int id) {
-        List <Movie>movieById = movieService.getMovieById(id);
-        if (movieById == null) {
-            throw new RuntimeException("Film not found with ID: " + id);  // Kaste en exception, hvis filmen ikke findes
+    public ResponseEntity<Movie> getMovieById(@PathVariable int id) {
+        Movie Movie = movieService.getMovieById(id);
+        if (Movie != null) {
+            return ResponseEntity.ok(Movie);  // Kaste en exception, hvis filmen ikke findes
         }
-        return movieById;
+        return ResponseEntity.notFound().build();
     }
 
     // Tilføj en ny film
     @PostMapping
-    public Movie addMovie(@RequestBody Movie movie) {
-        return movieService.addMovie(movie);
+    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
+        System.out.println("film" + movie.getTitle());
+        Movie savedMovie = movieService.createMovie(movie);  // Gem film i databasen
+        return ResponseEntity.ok(savedMovie);  // Returner den gemte film som respons
     }
+
 
     // Opdater en eksisterende film
     @PutMapping("/{id}")

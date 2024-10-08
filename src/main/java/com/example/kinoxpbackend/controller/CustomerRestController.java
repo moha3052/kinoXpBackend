@@ -8,6 +8,7 @@ import com.example.kinoxpbackend.service.CustomerService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 
 @RequestMapping("/api/customers")
 public class    CustomerRestController {
