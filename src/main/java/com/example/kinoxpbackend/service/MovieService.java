@@ -124,7 +124,7 @@ public class MovieService {
             case 27: return Genre.HORROR;
             case 9648: return Genre.MYSTERY;
             case 10749: return Genre.ROMANCE;
-            case 878: return Genre.SCI_FI;
+            case 878: return Genre.SCIENCE_FICTION;
             case 53: return Genre.THRILLER;
             case 10752: return Genre.WAR;
             case 37: return Genre.WESTERN;

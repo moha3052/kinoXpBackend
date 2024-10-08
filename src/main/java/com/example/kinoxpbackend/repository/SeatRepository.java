@@ -1,10 +1,9 @@
 package com.example.kinoxpbackend.repository;
 
-import com.example.kinoxpbackend.model.Employee;
+import com.example.kinoxpbackend.model.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
-    Employee findByName(String name);
+public interface SeatRepository extends JpaRepository<Seat,Integer> {
 }

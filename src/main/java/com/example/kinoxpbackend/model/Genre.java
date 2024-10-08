@@ -14,7 +14,6 @@ public enum Genre {
     DRAMA,
     FANTASY,
     MYSTERY,
-    SCI_FI,
     WAR,
     WESTERN,
     UNKNOWN;
