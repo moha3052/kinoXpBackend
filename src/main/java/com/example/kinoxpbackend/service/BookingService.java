@@ -1,6 +1,7 @@
 package com.example.kinoxpbackend.service;
 
 import com.example.kinoxpbackend.model.Movie;
+import com.example.kinoxpbackend.model.Seat;
 import com.example.kinoxpbackend.model.Show;
 import com.example.kinoxpbackend.repository.MovieRepository;
 import com.example.kinoxpbackend.repository.SeatRepository;
@@ -25,12 +26,12 @@ public class BookingService {
         return movieRepository.findAll();
     }
 
-    public List<Show> getShowsForMovie(Long movieId) {
-        return showRepository.findByMovie_Id(movieId);
+    public List<Show> getShowsForMovie(int movieId) {
+        return showRepository.findByMovieID(movieId);
     }
 
-    public List<Seat> getAvailableSeatsForShow(Long showId) {
-        return seatRepository.findByShow_IdAndIsAvailableTrue(showId);
+    public List<Seat> getAvailableSeatsForShow(int seatId) {
+        return seatRepository.findBySeatId(seatId);
     }
 }
 
