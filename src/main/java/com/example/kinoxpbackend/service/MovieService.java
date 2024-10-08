@@ -1,14 +1,13 @@
 package com.example.kinoxpbackend.service;
 
-
 import com.example.kinoxpbackend.model.AgeLimit;
 import com.example.kinoxpbackend.model.Genre;
+import com.example.kinoxpbackend.model.Movie;
+import com.example.kinoxpbackend.repository.MovieRepository;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.example.kinoxpbackend.model.Movie;
-import com.example.kinoxpbackend.repository.MovieRepository;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -16,23 +15,19 @@ import java.util.stream.Collectors;
 
 @Service
 public class MovieService {
-    final MovieRepository movieRepository;
-    final private RestTemplate restTemplate;
+    private final MovieRepository movieRepository;
+    private final RestTemplate restTemplate;
+    private final String api = "https://api.themoviedb.org/3/discover/movie?primary_release_year=2024&api_key=2b5953c6a0951ac2ba0f1d30493b74ec";
 
-    public String api = "https://api.themoviedb.org/3/discover/movie?primary_release_year=2024&api_key=2b5953c6a0951ac2ba0f1d30493b74ec";
-
-    public MovieService(MovieRepository movieRepository, RestTemplate restTemplate){
+    public MovieService(MovieRepository movieRepository, RestTemplate restTemplate) {
         this.movieRepository = movieRepository;
-        this.restTemplate =restTemplate;
+        this.restTemplate = restTemplate;
     }
-
 
     // Tilføj en ny film
     public Movie createMovie(Movie movie) {
         return movieRepository.save(movie);
     }
-
-
 
     // Hent en film baseret på ID
     public Movie getMovieById(int id) {
@@ -57,32 +52,33 @@ public class MovieService {
         movieRepository.deleteById(id);
     }
 
-
     public List<Movie> getMovies() {
-        // Hent film fra API ved brug af RestTemplate
-        ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
-                api,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<Map<String, Object>>() {}
-        );
+        try {
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                    api,
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<Map<String, Object>>() {}
+            );
 
-        // Hent "results" fra responsen og konverter til Movie-objekter
-        List<Map<String, Object>> results = (List<Map<String, Object>>) response.getBody().get("results");
+            List<Map<String, Object>> results = (List<Map<String, Object>>) response.getBody().get("results");
 
-        if (results == null) {
-            return Collections.emptyList(); // Returner en tom liste, hvis der ikke er nogen resultater
+            if (results == null) {
+                return Collections.emptyList(); // Returner en tom liste, hvis der ikke er nogen resultater
+            }
+
+            List<Movie> movieList = results.stream()
+                    .map(this::mapToMovie)
+                    .collect(Collectors.toList());
+
+            // Gem filmene i databasen
+            saveMovies(movieList);
+
+            return movieList;
+        } catch (Exception e) {
+            // Log fejl her, hvis nødvendigt
+            return Collections.emptyList(); // Returner en tom liste ved fejl
         }
-
-        // Brug stream API til at konvertere resultaterne til Movie-objekter
-        List<Movie> movieList = results.stream()
-                .map(this::mapToMovie) // Map hver Map til et Movie-objekt
-                .collect(Collectors.toList());
-
-        // Gem filmene i databasen
-        saveMovies(movieList);
-
-        return movieList;
     }
 
     private Movie mapToMovie(Map<String, Object> result) {
@@ -91,24 +87,20 @@ public class MovieService {
 
         List<Integer> genreIds = (List<Integer>) result.get("genre_ids");
         if (genreIds != null && !genreIds.isEmpty()) {
-
             movie.setGenre(mapGenreIdToEnum(genreIds.get(0)));
         } else {
             movie.setGenre(Genre.UNKNOWN); // Standardværdi, hvis der ikke er nogen genre
         }
 
         // Håndter 'runtime'
-        Integer runtime = Optional.ofNullable((Integer) result.get("runtime")).orElse(0);
-        movie.setDuration(runtime);
+        Integer runtime = (Integer) result.get("runtime");
+        movie.setDuration(runtime != null ? runtime : 0);
 
-        Integer ageLimitValue = Optional.ofNullable((Integer) result.get("age_limit")).orElse(0);
-        movie.setAgeLimit(mapAgeLimitValueToEnum(ageLimitValue));
-
-
+        Integer ageLimitValue = (Integer) result.get("age_limit");
+        movie.setAgeLimit(mapAgeLimitValueToEnum(ageLimitValue != null ? ageLimitValue : 0));
 
         return movie;
     }
-
 
     // Metode til at mappe genreId til Genre enum
     private Genre mapGenreIdToEnum(Integer genreId) {
@@ -144,10 +136,9 @@ public class MovieService {
             case 3:
                 return AgeLimit.R; // R for "Restricted"
             default:
-                return AgeLimit.UNKOWN; // Ukendt værdi
+                return AgeLimit.UNKNOWN; // Ukendt værdi
         }
     }
-
 
     // Metode til at gemme film i MySQL
     private void saveMovies(List<Movie> movies) {
