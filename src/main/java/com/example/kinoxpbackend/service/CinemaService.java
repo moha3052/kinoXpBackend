@@ -1,5 +1,7 @@
-package com.example.kinoxpbackend.cinema;
+package com.example.kinoxpbackend.service;
 
+import com.example.kinoxpbackend.model.Cinema;
+import com.example.kinoxpbackend.repository.CinemaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

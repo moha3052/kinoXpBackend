@@ -18,8 +18,6 @@ public class Show {
     private int showID;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String theater; // E.g. "Theater 1", "Theater 2"
-
-
+    private String theater;
     }
 
