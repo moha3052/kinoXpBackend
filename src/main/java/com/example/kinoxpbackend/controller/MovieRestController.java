@@ -5,11 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.kinoxpbackend.service.MovieService;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/movies")
 public class MovieRestController {
 
     final MovieService movieService;
@@ -19,12 +19,10 @@ public class MovieRestController {
     }
 
     // Hent alle film
-    @GetMapping("/movies")
+    @GetMapping
     public List<Movie> getAllMovies() {
         return movieService.getMovies();
     }
-
-
 
 
     // Hent en film baseret på ID
@@ -40,7 +38,6 @@ public class MovieRestController {
     // Tilføj en ny film
     @PostMapping
     public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
-        System.out.println("film" + movie.getTitle());
         Movie savedMovie = movieService.createMovie(movie);  // Gem film i databasen
         return ResponseEntity.ok(savedMovie);  // Returner den gemte film som respons
     }

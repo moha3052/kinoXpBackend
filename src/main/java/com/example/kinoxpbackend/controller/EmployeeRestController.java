@@ -6,18 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/login")
 public class EmployeeRestController {
 
-    @Autowired
-    private EmployeeService employeeService;
+
+    final EmployeeService employeeService;
+
+    public EmployeeRestController(EmployeeService employeeService){
+        this.employeeService = employeeService;
+    }
 
     // Login
-    @PostMapping("/login")
+    @PostMapping
     public Employee login(@RequestParam String name, @RequestParam String password) {
         Employee employee = employeeService.login(name);
         if (employee != null) {
-            return employee;  // Returner medarbejderen, hvis login er succesfuld
+            return employee;
         } else {
             throw new RuntimeException("Forkert navn eller adgangskode");
         }
