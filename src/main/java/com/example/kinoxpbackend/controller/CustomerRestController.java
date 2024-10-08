@@ -8,12 +8,16 @@ import com.example.kinoxpbackend.service.CustomerService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 
 @RequestMapping("/api/customers")
 public class    CustomerRestController {
-    @Autowired
-    private CustomerService customerService;
 
+    final CustomerService customerService;
+
+    public CustomerRestController(CustomerService customerService){
+        this.customerService = customerService;
+    }
     @GetMapping
     public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();

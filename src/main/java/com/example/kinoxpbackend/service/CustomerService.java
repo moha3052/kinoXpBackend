@@ -1,7 +1,6 @@
 package com.example.kinoxpbackend.service;
 
 import com.example.kinoxpbackend.model.Customer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.kinoxpbackend.repository.CustomerRepository;
 
@@ -10,9 +9,11 @@ import java.util.List;
 @Service
 
 public class CustomerService {
-    @Autowired
-    private CustomerRepository customerRepository;
 
+    final CustomerRepository customerRepository;
+    public CustomerService(CustomerRepository customerRepository){
+        this.customerRepository = customerRepository;
+    }
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
