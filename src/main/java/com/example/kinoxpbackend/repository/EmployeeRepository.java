@@ -4,8 +4,9 @@ import com.example.kinoxpbackend.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
-    List<Employee> findByEmployeeID(int id);
+
+    // Finder medarbejder ved navn og adgangskode
+    Employee findByName(String name);
 }
