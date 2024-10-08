@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/theater")
+
 public class TheaterRestController {
 
     final TheaterService theaterService;

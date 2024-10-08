@@ -5,21 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Movie {
+public class Show {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int showID;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private String theater; // E.g. "Theater 1", "Theater 2"
 
-    private int movieID;
-    private String title;
-    @Enumerated(EnumType.STRING)
-    private Genre genre;
-    private int duration;
-    @Enumerated(EnumType.STRING)
-    private AgeLimit ageLimit;
-}
+
+    }
+
