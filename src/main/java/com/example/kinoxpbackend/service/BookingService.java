@@ -1,7 +1,10 @@
 package com.example.kinoxpbackend.service;
 
 import com.example.kinoxpbackend.model.Movie;
+import com.example.kinoxpbackend.model.Show;
 import com.example.kinoxpbackend.repository.MovieRepository;
+import com.example.kinoxpbackend.repository.SeatRepository;
+import com.example.kinoxpbackend.repository.ShowRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
