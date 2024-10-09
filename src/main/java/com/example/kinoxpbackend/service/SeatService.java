@@ -3,7 +3,7 @@ package com.example.kinoxpbackend.service;
 import org.springframework.stereotype.Service;
 import com.example.kinoxpbackend.model.Seat;
 import com.example.kinoxpbackend.repository.SeatRepository;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 @Service
