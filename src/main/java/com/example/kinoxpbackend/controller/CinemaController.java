@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
-@RequestMapping("/api/cinema")
 @RestController
+@RequestMapping("/api/cinema")
 public class CinemaController {
     final CinemaService cinemaService;
     public CinemaController(CinemaService cinemaService){
