@@ -21,6 +21,7 @@ public class MovieRestController {
     // Hent alle film
     @GetMapping
     public List<Movie> getAllMovies() {
+
         return movieService.getMovies();
     }
 

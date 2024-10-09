@@ -20,7 +20,7 @@ public class CinemaController {
         return cinemaService.getAllCinema();
     }
     @GetMapping("/{id}")
-    public Optional<Cinema> getCinemaByID(@PathVariable Long id){
+    public Optional<Cinema> getCinemaByID(@PathVariable int id){
         return cinemaService.getCinemaByID(id);
     }
     @PostMapping
@@ -28,11 +28,11 @@ public class CinemaController {
         return cinemaService.addCinema(cinema);
     }
     @PutMapping("/{id}")
-    public Cinema updateCinema(@PathVariable Long id, @RequestBody Cinema cinemaBody){
+    public Cinema updateCinema(@PathVariable int id, @RequestBody Cinema cinemaBody){
         return  cinemaService.updateCinema(id,cinemaBody);
     }
     @DeleteMapping("/{id}")
-    public void deleteCinema(@PathVariable Long id){
+    public void deleteCinema(@PathVariable int id){
         cinemaService.deleteCinemaById(id);
     }
 }

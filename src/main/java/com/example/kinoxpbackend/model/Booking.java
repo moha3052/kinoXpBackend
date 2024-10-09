@@ -17,8 +17,7 @@ import lombok.Setter;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long seatID;
-
+    private int seatID;
     private int seatNumber;
     private boolean isAvailable;
 }

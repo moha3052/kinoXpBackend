@@ -19,7 +19,7 @@ public class Theater {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int theaterID;
     private String theater_name;
-    private String rowNumber;
+    private String seatRow;
     private String seat;
 
 }

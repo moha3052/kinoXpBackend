@@ -1,13 +1,14 @@
 package com.example.kinoxpbackend.controller;
 
 import com.example.kinoxpbackend.model.Movie;
+import com.example.kinoxpbackend.model.MovieRuns;
 import com.example.kinoxpbackend.model.Seat;
-import com.example.kinoxpbackend.model.Show;
 import com.example.kinoxpbackend.service.BookingService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BookingRestController {
     private final BookingService bookingService;
@@ -22,12 +23,12 @@ public class BookingRestController {
     }
 
     @GetMapping("/movies/{movieId}/shows")
-    public List<Show> getShowsForMovie(@PathVariable int movieId) {
+    public Optional<MovieRuns> getShowsForMovie(@PathVariable int movieId) {
         return bookingService.getShowsForMovie(movieId);
     }
 
     @GetMapping("/shows/{showId}/seats")
-    public List<Seat> getAvailableSeats(@PathVariable int showId) {
+    public Optional<Seat> getAvailableSeats(@PathVariable int showId) {
         return bookingService.getAvailableSeatsForShow(showId);
     }
 

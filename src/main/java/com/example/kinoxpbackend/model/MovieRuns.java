@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Show {
+public class MovieRuns {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int showID;

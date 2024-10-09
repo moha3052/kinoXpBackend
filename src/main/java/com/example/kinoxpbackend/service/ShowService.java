@@ -1,6 +1,6 @@
 package com.example.kinoxpbackend.service;
 
-import com.example.kinoxpbackend.model.Show;
+import com.example.kinoxpbackend.model.MovieRuns;
 import com.example.kinoxpbackend.repository.ShowRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,25 +15,25 @@ public class ShowService {
     }
 
     // Opret et nyt show
-    public Show createShow(Show show) {
+    public MovieRuns createShow(MovieRuns movieRuns) {
         // Validering for overlapping shows
-        if (isOverlapping(show)) {
+        if (isOverlapping(movieRuns)) {
             throw new IllegalArgumentException("Show overlaps with an existing show in the same theater.");
         }
-        return showRepository.save(show);
+        return showRepository.save(movieRuns);
     }
 
     // Hent alle shows
-    public List<Show> getAllShows() {
+    public List<MovieRuns> getAllShows() {
         return showRepository.findAll();
     }
 
     // Valider om der er overlap mellem shows
-    private boolean isOverlapping(Show newShow) {
-        List<Show> existingShows = showRepository.findAll();
-        for (Show show : existingShows) {
-            if (show.getTheater().equals(newShow.getTheater())) {
-                if (newShow.getStartTime().isBefore(show.getEndTime()) && newShow.getEndTime().isAfter(show.getStartTime())) {
+    private boolean isOverlapping(MovieRuns newMovieRuns) {
+        List<MovieRuns> existingMovieRuns = showRepository.findAll();
+        for (MovieRuns movieRuns : existingMovieRuns) {
+            if (movieRuns.getTheater().equals(newMovieRuns.getTheater())) {
+                if (newMovieRuns.getStartTime().isBefore(movieRuns.getEndTime()) && newMovieRuns.getEndTime().isAfter(movieRuns.getStartTime())) {
                     return true; // Der er overlap
                 }
             }

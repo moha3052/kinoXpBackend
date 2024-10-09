@@ -19,10 +19,10 @@ public class CinemaService {
     public Cinema addCinema(Cinema cinema){
         return cinemaRepository.save(cinema);
     }
-    public Optional<Cinema> getCinemaByID(Long iD){
+    public Optional<Cinema> getCinemaByID(int iD){
         return cinemaRepository.findById(iD);
      }
-     public Cinema updateCinema(Long iD, Cinema cinemaObject){
+     public Cinema updateCinema(int iD, Cinema cinemaObject){
         Cinema cinema=cinemaRepository.findById(iD).orElse(null);
         if (cinema != null){
             cinema.setLocation(cinemaObject.getLocation());
@@ -31,7 +31,7 @@ public class CinemaService {
         }
         return null;
     }
-    public void deleteCinemaById(Long  id){
+    public void deleteCinemaById(int  id){
         cinemaRepository.deleteById(id);
     }
 }

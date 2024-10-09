@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface SeatRepository extends JpaRepository<Seat,Integer> {
-    List<Seat> findBySeatId(int seatId);
+    //List<Seat> findBySeatId(int seatId);
 }

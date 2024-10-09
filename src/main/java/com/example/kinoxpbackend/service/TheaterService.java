@@ -2,10 +2,11 @@ package com.example.kinoxpbackend.service;
 
 import com.example.kinoxpbackend.model.Theater;
 import com.example.kinoxpbackend.repository.TheaterRepository;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-
+@Service
 public class TheaterService {
    final TheaterRepository theaterRepository;
 

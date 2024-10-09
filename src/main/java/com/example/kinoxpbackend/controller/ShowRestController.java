@@ -1,6 +1,6 @@
 package com.example.kinoxpbackend.controller;
 
-import com.example.kinoxpbackend.model.Show;
+import com.example.kinoxpbackend.model.MovieRuns;
 import com.example.kinoxpbackend.service.ShowService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +17,14 @@ public class ShowRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Show> createShow(@RequestBody Show show) {
-        Show createdShow = showService.createShow(show);
-        return ResponseEntity.ok(createdShow);
+    public ResponseEntity<MovieRuns> createShow(@RequestBody MovieRuns movieRuns) {
+        MovieRuns createdMovieRuns = showService.createShow(movieRuns);
+        return ResponseEntity.ok(createdMovieRuns);
     }
 
     @GetMapping
-    public ResponseEntity<List<Show>> getAllShows() {
-        List<Show> shows = showService.getAllShows();
-        return ResponseEntity.ok(shows);
+    public ResponseEntity<List<MovieRuns>> getAllShows() {
+        List<MovieRuns> movieRuns = showService.getAllShows();
+        return ResponseEntity.ok(movieRuns);
     }
 }

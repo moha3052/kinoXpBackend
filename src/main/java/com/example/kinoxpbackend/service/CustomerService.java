@@ -22,7 +22,7 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Customer getCustomerById(Long id) {
+    public Customer getCustomerById(int id) {
         return customerRepository.findById(id).orElse(null);
     }
 
@@ -30,7 +30,7 @@ public class CustomerService {
         return customerRepository.findByPhoneNumber(phoneNumber);
     }
 
-    public void deleteCustomer(Long id) {
+    public void deleteCustomer(int id) {
         customerRepository.deleteById(id);
     }
 }
