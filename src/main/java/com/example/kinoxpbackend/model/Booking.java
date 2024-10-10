@@ -1,9 +1,6 @@
 package com.example.kinoxpbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +14,19 @@ import lombok.Setter;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int seatID;
+    private int bookingID;
     private int seatNumber;
     private boolean isAvailable;
+
+    @ManyToOne
+    @JoinColumn(name = "show_id")
+    private MovieRuns movieRuns;
+
+    @ManyToOne
+    @JoinColumn(name = "seat_id")
+    private Seat seat;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

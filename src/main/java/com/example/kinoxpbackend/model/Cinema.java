@@ -20,6 +20,11 @@ public class Cinema {
     private String name;
     private String location;
 
+    @OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL)
+    private List<Employee> employees;
+    @OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL)
+    private List<Theater> theaters;
+
 
 
 }

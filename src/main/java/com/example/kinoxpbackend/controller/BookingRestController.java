@@ -6,10 +6,11 @@ import com.example.kinoxpbackend.model.Seat;
 import com.example.kinoxpbackend.service.BookingService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
-
+@RequestMapping("/booking")
 public class BookingRestController {
     private final BookingService bookingService;
 

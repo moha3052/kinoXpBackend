@@ -1,13 +1,12 @@
 package com.example.kinoxpbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,4 +19,11 @@ public class Seat {
     private int seatID;
     private String seatName;
     private String rowName;
+
+    @ManyToOne
+    @JoinColumn(name = "theater_id")
+    private Theater theater;
+
+    @OneToMany(mappedBy = "seat", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
 }
