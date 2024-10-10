@@ -21,4 +21,13 @@ public class Theater {
     private String theater_name;
     private String seatRow;
 
+    @ManyToOne
+    @JoinColumn(name = "cinema_id")
+    private Cinema cinema;
+
+    @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
+    private List<Seat> seats;
+
+    @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
+    private List<MovieRuns> movieRuns;
 }
