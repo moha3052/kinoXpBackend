@@ -1,7 +1,6 @@
 package com.example.kinoxpbackend.controller;//*package controller;
 
 import com.example.kinoxpbackend.model.Customer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.kinoxpbackend.service.CustomerService;
 
@@ -11,11 +10,11 @@ import java.util.List;
 @CrossOrigin
 
 @RequestMapping("/api/customers")
-public class    CustomerRestController {
+public class CustomerController {
 
     final CustomerService customerService;
 
-    public CustomerRestController(CustomerService customerService){
+    public CustomerController(CustomerService customerService){
         this.customerService = customerService;
     }
     @GetMapping

@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/movies")
-public class MovieRestController {
+public class MovieController {
 
     final MovieService movieService;
 
-    public MovieRestController(MovieService movieService){
+    public MovieController(MovieService movieService){
         this.movieService = movieService;
     }
 

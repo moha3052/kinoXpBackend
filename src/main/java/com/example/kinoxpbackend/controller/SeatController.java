@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/seat")
-public class SeatRestController {
+public class SeatController {
 
     final SeatService seatService;
 
-    public SeatRestController(SeatService seatService){
+    public SeatController(SeatService seatService){
         this.seatService = seatService;
     }
 
