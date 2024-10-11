@@ -1,8 +1,8 @@
 package com.example.kinoxpbackend.controller;
 
 import com.example.kinoxpbackend.model.Movie;
-import com.example.kinoxpbackend.model.MovieRuns;
 import com.example.kinoxpbackend.model.Seat;
+import com.example.kinoxpbackend.model.MovieRuns;
 import com.example.kinoxpbackend.service.BookingService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,5 +32,6 @@ public class BookingRestController {
     public Optional<Seat> getAvailableSeats(@PathVariable int showId) {
         return bookingService.getAvailableSeatsForShow(showId);
     }
+
 
 }

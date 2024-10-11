@@ -1,4 +1,4 @@
-package com.example.kinoxpbackend.model;
+package com.example.kinoxpbackend.model.Enum;
 
 public enum AgeLimit {
     ALL_AGES,

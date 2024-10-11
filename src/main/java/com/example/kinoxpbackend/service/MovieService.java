@@ -1,7 +1,7 @@
 package com.example.kinoxpbackend.service;
 
-import com.example.kinoxpbackend.model.AgeLimit;
-import com.example.kinoxpbackend.model.Genre;
+import com.example.kinoxpbackend.model.Enum.AgeLimit;
+import com.example.kinoxpbackend.model.Enum.Genre;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.repository.MovieRepository;
 import org.springframework.core.ParameterizedTypeReference;
@@ -38,6 +38,7 @@ public class MovieService {
     public Movie updateMovie(int id, Movie movieDetails) {
         Movie movie = movieRepository.findById(id).orElse(null);
         if (movie != null) {
+            movie.setImageURL(movieDetails.getImageURL());
             movie.setTitle(movieDetails.getTitle());
             movie.setGenre(movieDetails.getGenre());
             movie.setDuration(movieDetails.getDuration());
@@ -101,6 +102,8 @@ public class MovieService {
 
         return movie;
     }
+
+    
 
     // Metode til at mappe genreId til Genre enum
     private Genre mapGenreIdToEnum(Integer genreId) {

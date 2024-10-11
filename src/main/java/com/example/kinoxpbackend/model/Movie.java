@@ -1,5 +1,7 @@
 package com.example.kinoxpbackend.model;
 
+import com.example.kinoxpbackend.model.Enum.AgeLimit;
+import com.example.kinoxpbackend.model.Enum.Genre;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +20,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int movieID;
+    private String imageURL;
     private String title;
     @Enumerated(EnumType.STRING)
     private Genre genre;

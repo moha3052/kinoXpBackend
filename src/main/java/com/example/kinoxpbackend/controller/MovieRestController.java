@@ -1,14 +1,19 @@
 package com.example.kinoxpbackend.controller;
 
+import com.example.kinoxpbackend.model.Enum.AgeLimit;
+import com.example.kinoxpbackend.model.Enum.Genre;
 import com.example.kinoxpbackend.model.Movie;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.kinoxpbackend.service.MovieService;
 
 
+
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/movies")
 public class MovieRestController {
 
@@ -16,6 +21,20 @@ public class MovieRestController {
 
     public MovieRestController(MovieService movieService){
         this.movieService = movieService;
+    }
+    @PostMapping
+    public ResponseEntity<?> addMovie(@RequestBody Movie movie) {
+        System.out.println(movie.getTitle());
+        if (movie == null) {
+            return ResponseEntity.badRequest().body("Movie cannot be null");
+        }
+        // tilføjelse af andre valideringer her
+        try {
+            Movie savedMovie = movieService.createMovie(movie);
+            return ResponseEntity.ok(savedMovie);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving movie: " + e.getMessage());
+        }
     }
 
     // Hent alle film
@@ -36,12 +55,10 @@ public class MovieRestController {
         return ResponseEntity.notFound().build();
     }
 
-    // Tilføj en ny film
-    @PostMapping
-    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
-        Movie savedMovie = movieService.createMovie(movie);  // Gem film i databasen
-        return ResponseEntity.ok(savedMovie);  // Returner den gemte film som respons
-    }
+
+
+
+
 
 
     // Opdater en eksisterende film
@@ -55,4 +72,5 @@ public class MovieRestController {
     public void deleteMovie(@PathVariable int id) {
         movieService.deleteMovie(id);
     }
+
 }
