@@ -10,11 +10,11 @@ import java.util.List;
 @CrossOrigin
 
 @RequestMapping("/api/customers")
-public class    CustomerRestController {
+public class CustomerController {
 
     final CustomerService customerService;
 
-    public CustomerRestController(CustomerService customerService){
+    public CustomerController(CustomerService customerService){
         this.customerService = customerService;
     }
     @GetMapping

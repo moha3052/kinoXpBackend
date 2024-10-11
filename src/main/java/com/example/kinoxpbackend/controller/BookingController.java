@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.Optional;
 @RequestMapping("/booking")
-public class BookingRestController {
+public class BookingController {
     private final BookingService bookingService;
 
-    public BookingRestController(BookingService bookingService) {
+    public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
     }
 

@@ -16,6 +16,6 @@ public class EmployeeService {
     }
 
     public Employee login(String name) {
-        return employeeRepository.findByName(name);
+        return employeeRepository.findByName(name); // Denne metode skal være korrekt implementeret i dit repository
     }
 }

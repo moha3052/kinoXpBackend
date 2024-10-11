@@ -10,10 +10,10 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/shows")
-public class ShowRestController {
+public class ShowController {
     private final ShowService showService;
 
-    public ShowRestController(ShowService showService) {
+    public ShowController(ShowService showService) {
         this.showService = showService;
     }
 
