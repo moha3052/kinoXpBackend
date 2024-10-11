@@ -5,6 +5,8 @@ import com.example.kinoxpbackend.repository.EmployeeRepository;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EmployeeService {
 
@@ -15,7 +17,11 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public Employee login(String name) {
-        return employeeRepository.findByName(name); // Denne metode skal være korrekt implementeret i dit repository
+    public Optional<Employee> login(String name) {
+        return employeeRepository.findByName(name);
     }
+
+    /*public Employee login(String name) {
+        return employeeRepository.findByName(name); // Denne metode skal være korrekt implementeret i dit repository
+    }*/
 }
