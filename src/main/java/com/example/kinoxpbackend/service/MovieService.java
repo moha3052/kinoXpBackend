@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class MovieService {
     private final MovieRepository movieRepository;
     private final RestTemplate restTemplate;
-    private final String api = "https://api.themoviedb.org/3/discover/movie?primary_release_year=2024&api_key=2b5953c6a0951ac2ba0f1d30493b74ec";
+    private final String api = "http://localhost:8080/api/movies";
 
     public MovieService(MovieRepository movieRepository, RestTemplate restTemplate) {
         this.movieRepository = movieRepository;
@@ -32,6 +32,10 @@ public class MovieService {
     // Hent en film baseret på ID
     public Movie getMovieById(int id) {
         return movieRepository.findById(id).orElse(null);
+    }
+
+    public List<Movie> getAllMovies(){
+        return movieRepository.findAll();
     }
 
     // Opdater en film

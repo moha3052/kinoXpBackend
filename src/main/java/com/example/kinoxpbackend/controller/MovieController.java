@@ -41,7 +41,7 @@ public class MovieController {
     @GetMapping
     public List<Movie> getAllMovies() {
 
-        return movieService.getMovies();
+        return movieService.getAllMovies();
     }
 
 
@@ -54,12 +54,6 @@ public class MovieController {
         }
         return ResponseEntity.notFound().build();
     }
-
-
-
-
-
-
 
     // Opdater en eksisterende film
     @PutMapping("/{id}")
