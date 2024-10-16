@@ -29,7 +29,7 @@ public class MovieRuns {
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    @OneToMany(mappedBy = "movieRuns", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "movieRuns", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Booking> bookings;
     }
 

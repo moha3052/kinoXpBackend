@@ -28,6 +28,6 @@ public class Movie {
     @Enumerated(EnumType.STRING)
     private AgeLimit ageLimit;
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<MovieRuns> movieRuns;
 }
