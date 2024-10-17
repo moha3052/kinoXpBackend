@@ -5,6 +5,7 @@ import com.example.kinoxpbackend.repository.ShowRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShowService {
@@ -27,6 +28,11 @@ public class ShowService {
     public List<MovieRuns> getAllShows() {
         return showRepository.findAll();
     }
+
+    public Optional<MovieRuns> getShowById(int showId) {
+        return showRepository.findById(showId);
+    }
+
 
     // Valider om der er overlap mellem shows
     private boolean isOverlapping(MovieRuns newMovieRuns) {
