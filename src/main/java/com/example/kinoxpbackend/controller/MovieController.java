@@ -3,6 +3,7 @@ package com.example.kinoxpbackend.controller;
 import com.example.kinoxpbackend.model.Enum.AgeLimit;
 import com.example.kinoxpbackend.model.Enum.Genre;
 import com.example.kinoxpbackend.model.Movie;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,9 +63,26 @@ public class MovieController {
     }
 
     // Slet en film
+   /* @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteMovie(@PathVariable int id) {
+        try {
+            movieService.deleteMovie(id);
+            return ResponseEntity.ok("Movie deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting movie");
+        }
+    }*/
     @DeleteMapping("/{id}")
-    public void deleteMovie(@PathVariable int id) {
-        movieService.deleteMovie(id);
+    public ResponseEntity<String> deleteMovie(@PathVariable int id) {
+        try {
+            movieService.deleteMovie(id);
+            return ResponseEntity.ok("Movie deleted successfully");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting movie");
+        }
     }
+
 
 }

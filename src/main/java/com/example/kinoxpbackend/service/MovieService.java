@@ -4,6 +4,7 @@ import com.example.kinoxpbackend.model.Enum.AgeLimit;
 import com.example.kinoxpbackend.model.Enum.Genre;
 import com.example.kinoxpbackend.model.Movie;
 import com.example.kinoxpbackend.repository.MovieRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +54,13 @@ public class MovieService {
     }
 
     // Slet en film
+    /*public void deleteMovie(int id) {
+        movieRepository.deleteById(id);
+    }*/
     public void deleteMovie(int id) {
+        if (!movieRepository.existsById(id)) {
+            throw new EntityNotFoundException("Movie not found with id: " + id);
+        }
         movieRepository.deleteById(id);
     }
 
